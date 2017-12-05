@@ -1,9 +1,13 @@
-import React from 'react';
+var React = require('react');
 
-export default class Greeting extends React.Component{
-    render(){
-        return (
-            <div>Hello user</div>
-        )
-    }
-}
+var Greeting = React.createClass({
+  render() {
+    return (
+        <div>
+            <h1>Hello user</h1>
+        </div>
+    );
+  }
+});
+
+module.exports = Greeting;

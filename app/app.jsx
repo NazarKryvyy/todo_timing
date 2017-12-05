@@ -1,9 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-import Main from 'Main';
-import Greeting from 'Greeting';
+var Main = require('Main');
+var Greeting = require('Greeting');
+// var Todo = require('Todo');
+
 import Todo from 'Todo';
+console.log(Todo);
 
 // Load foundation
 $(document).foundation();
@@ -13,10 +16,10 @@ require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path="/" component={Main}>      
-      <Route path="Todo" component={Todo}/>   
-      <IndexRoute component={Greeting}/>   
+    <Route path="/" component={Main}>
+      <IndexRoute component={Greeting} />
+      <Route path="Todo" components={Todo} />
     </Route>
   </Router>,
-  document.getElementById('app')
+  document.getElementById("app")
 );
