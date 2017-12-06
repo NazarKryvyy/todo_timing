@@ -42,7 +42,7 @@ export default class Todo extends React.Component{
     render(){
         const {todos} = this.state;
         const TodoComponents = todos.map((todo)=>{
-            return <TodoItem key={todo.id} id={todo.id} edit={todo.edit} time={todo.time} {...todo} />;
+            return <TodoItem key={todo.id} id={todo.id} edit={todo.edit} time={todo.time}  {...todo} />;
         })
 
         return (

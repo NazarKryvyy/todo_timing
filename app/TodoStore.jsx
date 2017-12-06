@@ -38,7 +38,6 @@ class TodoStore extends EventEmitter {
       work: false,
       complete: false
     });
-
     this.emit("change");
   }
 
@@ -52,19 +51,15 @@ class TodoStore extends EventEmitter {
           work = obj.work;
         }
     }); 
-    
     var incrementing = () =>{
         currentTask.time = currentTask.time + 1;
          this.emit("change");
-    } 
-   
-
+    }   
     if(work){
         timerRuning = setInterval(incrementing, 1000);
     }else{
       clearInterval(timerRuning);
     }   
-
   }
 
   updateTodo(id,text, edit){

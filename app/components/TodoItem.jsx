@@ -19,7 +19,7 @@ var TodoItems = React.createClass({
         TodoActions.updateTask(id, task, edit);
     },
     render: function(){
-        const { complete, edit, text, id, time} = this.props;
+        const { complete, edit, text, id, time, work} = this.props;
         if(edit){
             return <li>
                 <div>
@@ -28,7 +28,7 @@ var TodoItems = React.createClass({
                     Save
                   </button>
                 </div>
-                <Timer time={time} id={id}/>
+                <Timer time={time} id={id} work={work}/>
               </li>;
         }
 
