@@ -2,7 +2,7 @@ var  {EventEmitter}  = require('events');
 import dispatcher from 'Dispatcher';
 var timerRuning;
 
-class TodoStore extends EventEmitter {
+class TodoStore extends EventEmitter { 
   constructor() {
     super();
     this.todos = [
@@ -23,9 +23,6 @@ class TodoStore extends EventEmitter {
         complete: false
       }
     ];
-     
-
-     
   }
 
   createTodo(text) {
@@ -47,8 +44,10 @@ class TodoStore extends EventEmitter {
     this.todos.forEach((obj, index)=>{
         if(obj.id === parseInt(id)){
           currentTask = obj;
-          obj.work = obj.work ? false : true;
+          obj.work = obj.work ? false : true;          
           work = obj.work;
+        }else{
+          obj.work = false;
         }
     }); 
     var incrementing = () =>{
@@ -56,9 +55,11 @@ class TodoStore extends EventEmitter {
          this.emit("change");
     }   
     if(work){
-        timerRuning = setInterval(incrementing, 1000);
+      clearInterval(timerRuning);
+      timerRuning = setInterval(incrementing, 1000);
     }else{
       clearInterval(timerRuning);
+      this.emit("change");
     }   
   }
 
@@ -80,12 +81,15 @@ class TodoStore extends EventEmitter {
       switch(action.type){
           case 'CREATE_TODO':{
             this.createTodo(action.text);
+            break;
           }
           case 'UPDATE_TODO':{
             this.updateTodo(action.id, action.text, action.edit);
+            break;
           }
           case 'TOGLE_TIMER':{
             this.timerToggle(action.time, action.id);
+            break;
           }
       }
   }

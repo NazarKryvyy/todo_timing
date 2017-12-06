@@ -22,23 +22,29 @@ var TodoItems = React.createClass({
         const { complete, edit, text, id, time, work} = this.props;
         if(edit){
             return <li>
-                <div>
+                <div className="task-block">
                   <input value={text} focus="focused" type="text" onChange={this.onTaskChange} ref="task" />
                   <button className="button" onClick={this.editStatusChange}>
                     Save
                   </button>
                 </div>
                 <Timer time={time} id={id} work={work}/>
+                <div className="finish">
+                    <button className="button">Finish</button>
+                </div>
               </li>;
         }
 
         return(
             <li>
-                <div className="noedit">
+                <div className="noedit task-block">
                     <span>{text}</span>
                     <button className='button' onClick={this.editStatusChange}>Edit</button>
                 </div>   
-                 <Timer time={time} id={id}/>            
+                <Timer time={time} id={id}  work={work}/>  
+                <div className="finish">
+                    <button className="button">Finish</button>
+                </div>
             </li>
         )
     }

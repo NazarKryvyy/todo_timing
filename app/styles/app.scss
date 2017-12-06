@@ -24,19 +24,22 @@
 .todo-list li input {
     margin: 0;
 }
-.todo-list li  div, .new-task{
+.todo-list li  div, .new-task{   
    display: flex;
    align-items: center;
-   width: 100%;
+   width: 25%;
+   &.task-block{width: 50%}
+   .time-spend{
+    justify-content: center;
+    width: 100%;
+}
 }
 
 .todo-list li .noedit{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
-
 .timer{padding: 0 10px;}
-.time-spend{
-    justify-content: center;
-}
+
+.finish{display: flex; justify-content: center;}
 
