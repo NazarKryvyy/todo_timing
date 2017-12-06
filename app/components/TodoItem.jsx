@@ -1,30 +1,44 @@
 var React = require('react');
+import * as TodoActions from "Actions";
+
+import Timer from 'Timer';
 
 var TodoItems = React.createClass({
 
     onTaskChange: function(e){
         var task = this.refs.task.value;
+        var id = this.props.id;
+        var edit = this.props.edit;
+        TodoActions.updateTask(id,task, edit);
 
-        if (task.length > 0) {
-          this.refs.location.value = "";
-          this.props.onSearch(location);
-        }
     },
-
+    editStatusChange: function(){
+        var id = this.props.id;
+        var task = this.props.text;
+        var edit = this.props.edit ? false : true;
+        TodoActions.updateTask(id, task, edit);
+    },
     render: function(){
-        const { complete, edit, text } = this.props;
-
+        const { complete, edit, text, id, time} = this.props;
         if(edit){
-            return(
-                <li>
-                    <input value={text} focus="focused" type="text" onChange={this.onTaskChange} ref="task"/>
-                </li>
-            )
+            return <li>
+                <div>
+                  <input value={text} focus="focused" type="text" onChange={this.onTaskChange} ref="task" />
+                  <button className="button" onClick={this.editStatusChange}>
+                    Save
+                  </button>
+                </div>
+                <Timer time={time} id={id}/>
+              </li>;
         }
 
         return(
             <li>
-                <span>{text}</span>
+                <div className="noedit">
+                    <span>{text}</span>
+                    <button className='button' onClick={this.editStatusChange}>Edit</button>
+                </div>   
+                 <Timer time={time} id={id}/>            
             </li>
         )
     }

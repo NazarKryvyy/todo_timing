@@ -6,3 +6,37 @@
 @include foundation-everything;
 
 // Components
+.todo-list{
+    margin: 0;
+}
+.todo-list li {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e6e6e6;
+    list-style: none;
+    padding: 5px;
+    
+}
+.todo-list li .button{
+    width: 63px;
+    margin: 0;
+}
+.todo-list li input {
+    margin: 0;
+}
+.todo-list li  div, .new-task{
+   display: flex;
+   align-items: center;
+   width: 100%;
+}
+
+.todo-list li .noedit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer{padding: 0 10px;}
+.time-spend{
+    justify-content: center;
+}
+

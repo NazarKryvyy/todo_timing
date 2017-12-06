@@ -13,3 +13,21 @@ export function deleteTodo(id){
         id
     })
 }
+
+export function updateTask(id,text,edit){
+    dispatcher.dispatch({
+        type: 'UPDATE_TODO',
+        text,
+        id,
+        edit
+    });
+}
+
+export function timerToggle(id,time){
+    dispatcher.dispatch({
+        type: 'TOGLE_TIMER',
+        time,
+        id
+    });
+}
+

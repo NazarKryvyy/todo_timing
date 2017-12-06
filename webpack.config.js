@@ -31,7 +31,8 @@ module.exports = {
       TodoItem: "app/components/TodoItem.jsx",
       TodoStore: "app/TodoStore.jsx",
       Dispatcher: "app/dispatcher.jsx",
-      Actions: "app/actions.jsx"
+      Actions: "app/actions.jsx",
+      Timer: "app/components/Timer.jsx"
     },
     extensions: ["", ".js", ".jsx"]
   },
