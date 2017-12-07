@@ -14,12 +14,13 @@ export function deleteTodo(id){
     })
 }
 
-export function updateTask(id,text,edit){
+export function updateTask(id,text,edit, complete){
     dispatcher.dispatch({
         type: 'UPDATE_TODO',
         text,
         id,
-        edit
+        edit,
+        complete
     });
 }
 
@@ -28,6 +29,15 @@ export function timerToggle(id,time){
         type: 'TOGLE_TIMER',
         time,
         id
+    });
+}
+relocateTask;
+
+export function relocateTask(currentItemId, targetItemId){
+    dispatcher.dispatch({
+        type: 'RELOCATE_TASK',
+        currentItemId,
+        targetItemId
     });
 }
 

@@ -3,6 +3,8 @@
 // foundation
 @import "base/foundation-settings";
 @import "foundation";
+@include foundation-flex-classes;
+@include foundation-flex-grid;
 @include foundation-everything;
 
 // Components
@@ -15,11 +17,13 @@
     border: 1px solid #e6e6e6;
     list-style: none;
     padding: 5px;
+    background: #fff;
     
 }
 .todo-list li .button{
     width: 63px;
     margin: 0;
+    
 }
 .todo-list li input {
     margin: 0;
@@ -42,4 +46,13 @@
 .timer{padding: 0 10px;}
 
 .finish{display: flex; justify-content: center;}
+
+.finished-list li{
+    border: 1px solid $grey;
+    div:nth-child(1){border-right: 1px solid $grey; }
+    div {
+        display: flex;
+        justify-content: center;
+    }
+}
 
