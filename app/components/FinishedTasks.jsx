@@ -1,4 +1,4 @@
-var React =require('react');
+import React from 'react';
 import * as TodoActions from "Actions";
 import TodoStore from "TodoStore";
 import FinishedTask from "FinishedTask";

@@ -34,7 +34,8 @@ module.exports = {
       Actions: "app/actions.jsx",
       Timer: "app/components/Timer.jsx",
       FinishedTasks: "app/components/FinishedTasks.jsx",
-      FinishedTask: "app/components/FinishedTask.jsx"
+      FinishedTask: "app/components/FinishedTask.jsx",
+      formatTimer: "app/halpers/formatTimer.jsx"
     },
     extensions: ["", ".js", ".jsx"]
   },

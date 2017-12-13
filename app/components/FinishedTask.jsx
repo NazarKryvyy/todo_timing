@@ -1,19 +1,15 @@
-var React = require("react");
+import React from "react";
 import * as TodoActions from "Actions";
+import formatTime from 'formatTimer';
 
-var FinishedTask = React.createClass({
-    formateTime: function(time){
-        var seconds = time % 60;
-        var minutes = Math.floor(time / 60);
-        if(seconds< 10){
-            seconds = '0' + seconds;
-        }
-        if(minutes< 10){
-            minutes = '0' + minutes;
-        }
-        return minutes + ":" + seconds;
-    },
-    render: function(){
+
+
+
+export default class FinishedTasks extends React.Component{
+    constructor(){
+        super();
+    }
+    render(){
         const {text, time} = this.props;
         return (
             <li className="row" >               
@@ -21,12 +17,10 @@ var FinishedTask = React.createClass({
                     {text}
                 </div>
                 <div className="cell large-4">
-                    {this.formateTime(time)}
+                    {formatTime(time)}
                 </div>                             
             </li>
            
         )
     }
-})
-
-module.exports = FinishedTask;
+}

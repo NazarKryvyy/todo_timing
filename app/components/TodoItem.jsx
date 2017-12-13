@@ -1,27 +1,28 @@
-var React = require('react');
+import React  from 'react';
 import * as TodoActions from "Actions";
 
 import Timer from 'Timer';
 
-var curentItemId;
-var targetItemId;
+let curentItemId;
+let targetItemId;
 
-var TodoItems = React.createClass({
+var TodoItem = React.createClass({
 
     onTaskChange: function(e){
-        let { id, task, edit, complete } = this.props;
+        let { id, task, edit, complete, inProgress } = this.props;
         task = this.refs.task.value;
-        TodoActions.updateTask(id, task, edit, complete);
+        TodoActions.updateTask(id, task, edit, complete, inProgress);
     },
     editStatusChange: function(){
-        let { id, text, edit, complete } = this.props;
+        let { id, text, edit, complete, inProgress } = this.props;
         edit = edit ? false : true;
-        TodoActions.updateTask(id, text, edit, complete);
+        TodoActions.updateTask(id, text, edit, complete, inProgress);
     },
     finishTask: function () {
-        let { id, text, edit, complete } = this.props;
+        let { id, text, edit, complete, inProgress } = this.props;
         complete = true;
-        TodoActions.updateTask(id, text, edit, complete);
+        if(inProgress)inProgress = !inProgress;        
+        TodoActions.updateTask(id, text, edit, complete, inProgress);
     },
     onDragStart :function(){
         console.log("start");
@@ -40,7 +41,7 @@ var TodoItems = React.createClass({
         
     },
     render: function(){
-        const { complete, edit, text, id, time, work} = this.props;
+        const { complete, edit, text, id, time, inProgress} = this.props;
         
         if(edit){
             return <li draggable="true" onDragStart={this.onDragStart} onDragOver={this.onDragOver} onDrop={this.drop}>
@@ -50,7 +51,7 @@ var TodoItems = React.createClass({
                     Save
                   </button>
                 </div>
-                <Timer time={time} id={id} work={work} />
+                <Timer time={time} id={id} inProgress={inProgress} />
                 <div className="finish">
                   <button className="button" onClick={this.finishTask}>
                     Finish
@@ -66,7 +67,7 @@ var TodoItems = React.createClass({
                 Edit
               </button>
             </div>
-            <Timer time={time} id={id} work={work} />
+            <Timer time={time} id={id} inProgress={inProgress} />
             <div className="finish">
               <button className="button" onClick={this.finishTask}>
                 Finish
@@ -76,4 +77,4 @@ var TodoItems = React.createClass({
     }
 })
 
-module.exports = TodoItems;
+module.exports = TodoItem;

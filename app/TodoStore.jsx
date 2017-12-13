@@ -9,9 +9,9 @@ class TodoStore extends EventEmitter {
       {
         id: 11346,
         text: "Go Shoping",
-        edit: true,
+        edit: false,
         time: 0,
-        work: false,
+        inProgress: false,
         complete: false
       },
       {
@@ -19,7 +19,7 @@ class TodoStore extends EventEmitter {
         text: "Pay Water Bills",
         edit: false,
         time: 0,
-        work: false,
+        inProgress: false,
         complete: false
       }
     ];
@@ -32,29 +32,30 @@ class TodoStore extends EventEmitter {
       text,
       edit: false,
       time: 0,
-      work: false,
+      inProgress: false,
       complete: false
     });
     this.emit("change");
   }
 
   timerToggle(id, time) {
-    var currentTask;
-    var work;
+    let currentTask;
+    let inProgress;
     this.todos.forEach((obj, index) => {
       if (obj.id === parseInt(id)) {
         currentTask = obj;
-        obj.work = obj.work ? false : true;
-        work = obj.work;
+        obj.inProgress = !obj.inProgress;
+        inProgress = obj.inProgress;
       } else {
-        obj.work = false;
+        obj.inProgress = false;
       }
     });
-    var incrementing = () => {
-      currentTask.time = currentTask.time + 1;
+    this.emit("change");
+    let incrementing = () => {
+      ++currentTask.time ;
       this.emit("change");
     };
-    if (work) {
+    if (inProgress) {
       clearInterval(timerRuning);
       timerRuning = setInterval(incrementing, 1000);
     } else {
@@ -63,14 +64,18 @@ class TodoStore extends EventEmitter {
     }
   }
 
-  updateTodo(id, text, edit, complete) {
+  updateTodo(id, text, edit, complete, inProgress) {
     this.todos.forEach((obj, index) => {
       if (obj.id === parseInt(id)) {
         obj.text = text;
         obj.edit = edit;
         obj.complete = complete;
+        obj.inProgress = inProgress;
       }
     });
+    if(!inProgress){
+      clearInterval(timerRuning);
+    }
     this.emit("change");
   }
 
@@ -109,7 +114,7 @@ class TodoStore extends EventEmitter {
         break;
       }
       case "UPDATE_TODO": {
-        this.updateTodo(action.id, action.text, action.edit, action.complete);
+        this.updateTodo(action.id, action.text, action.edit, action.complete, action.inProgress);
         break;
       }
       case "TOGLE_TIMER": {

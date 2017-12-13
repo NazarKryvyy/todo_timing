@@ -1,45 +1,33 @@
 var React = require('react');
 import * as TodoActions from "Actions";
+import formatTime from 'formatTimer';
 
 var Timer = React.createClass({
     
    getInitialState: function(){
         return {
-            work :false,
+            inProgress :false,
         }        
     },
     toggleButtonName: function(){
-        var currentWork = this.state.work ? false : true;
+        let currentWork = !this.state.work;
         this.setState({
-            work: currentWork
+            inProgress: currentWork
         });
     },
     toggleTimer :function(){
-        var id = this.props.id;
-        var time = this.props.time;
+        let {id,time } = this.props;
         TodoActions.timerToggle(time, id);
-    },
-    formateTime: function(time){
-        var seconds = time % 60;
-        var minutes = Math.floor(time / 60);
-        if(seconds< 10){
-            seconds = '0' + seconds;
-        }
-        if(minutes< 10){
-            minutes = '0' + minutes;
-        }
-        return minutes + ":" + seconds;
     },
     onClick :function(){
         // this.toggleButtonName();
         this.toggleTimer();
     },
     render: function(){
-        const  { time, work } = this.props;
+        const  { time, inProgress } = this.props;
 
-        // const {work} = this.state;
         let buttonName;
-        if(work){
+        if(inProgress){
             buttonName = 'Stop'; 
         }else{
             buttonName = 'Start';
@@ -47,7 +35,7 @@ var Timer = React.createClass({
         return (            
             <div className="timer">
                 <button className="button" onClick={this.onClick}>{buttonName}</button>
-                <div className="time-spend">{this.formateTime(time)}</div>
+                <div className="time-spend">{formatTime(time)}</div>
             </div>
         )        
     }

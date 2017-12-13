@@ -1,6 +1,6 @@
-var React = require('react');
+import React from'react';
 
-var Greeting = React.createClass({
+export default class Greeting extends React.Component{
   render() {
     return (
         <div>
@@ -8,6 +8,9 @@ var Greeting = React.createClass({
         </div>
     );
   }
-});
+}
+// var Greeting = React.createClass({
+  
+// });
 
-module.exports = Greeting;
+// module.exports = Greeting;

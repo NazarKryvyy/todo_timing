@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var Main = require('Main');
-var Greeting = require('Greeting');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import Main from 'Main';
+import Greeting from "Greeting";
 import FinishedTasks from 'FinishedTasks';
 // var Todo = require('Todo');
 

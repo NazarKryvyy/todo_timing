@@ -14,12 +14,13 @@ export function deleteTodo(id){
     })
 }
 
-export function updateTask(id,text,edit, complete){
+export function updateTask(id,text,edit, complete, inProgress){
     dispatcher.dispatch({
         type: 'UPDATE_TODO',
         text,
         id,
         edit,
+        inProgress,
         complete
     });
 }
